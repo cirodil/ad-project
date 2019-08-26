@@ -25,8 +25,8 @@
 
     <v-app-bar app dark color="primary">
       <v-app-bar-nav-icon
-        @click="drawer = !drawer" 
-        class="hidden-md-and-up"    
+        @click="drawer = !drawer"
+        class="hidden-md-and-up"
       >
       </v-app-bar-nav-icon>
 
@@ -45,7 +45,7 @@
           </v-icon>
           {{ link.title }}
         </v-btn>
-      </v-toolbar-items>  
+      </v-toolbar-items>
     </v-app-bar>
 
     <v-content>
