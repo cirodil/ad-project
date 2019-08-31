@@ -87,7 +87,7 @@ export default {
           title: 'Third ad',
           description: 'Hello I am description',
           promo: true,
-          imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
           id: '12345'
         }
       ]
