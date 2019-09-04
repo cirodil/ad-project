@@ -51,11 +51,27 @@
     </v-app-bar>
 
     <v-content>
-
-        <router-view></router-view>
-
+      <router-view></router-view>
     </v-content>
 
+    <template v-if="error">
+      <v-snackbar
+        :color="error"
+        :multi-line="true"
+        :timeout="5000"
+        @input="closeError"
+        :value="true"
+      >
+        {{ error }}
+        <v-btn
+          dark
+          text
+          @click.native="closeError"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
+    </template>
   </v-app>
 </template>
 
@@ -72,6 +88,16 @@ export default {
         { title: 'New ad', icon: 'mdi-file-plus', url: '/new' },
         { title: 'My ads', icon: 'mdi-format-list-bulleted', url: '/list' }
       ]
+    }
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  methods: {
+    closeError () {
+      return this.$store.dispatch('clearError')
     }
   }
 }
