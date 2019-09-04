@@ -79,10 +79,11 @@ export default {
         const ad = {
           title: this.title,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          imageSrc: 'https://vanillaweb.ru/wp-content/uploads/2019/01/vue.jpg'
         }
 
-        console.log(ad)
+        this.$store.dispatch('createAd', ad)
       }
     }
   }
