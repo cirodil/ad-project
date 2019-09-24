@@ -51,7 +51,8 @@
               <v-row align="center" justify="center">
                 <v-spacer></v-spacer>
                 <v-btn
-                :disabled="!valid"
+                :loading="loading"
+                :disabled="!valid || loading"
                   class="primary"
                   @click="createAd"
                 >Create ad</v-btn>
@@ -72,6 +73,11 @@ export default {
       valid: false
     }
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     createAd () {
       if (this.$refs.form.validate()) {
@@ -80,10 +86,14 @@ export default {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          imageSrc: 'https://vanillaweb.ru/wp-content/uploads/2019/01/vue.jpg'
+          imageSrc: 'https://pbs.twimg.com/media/DXPulQwXcAA-CW6.jpg'
         }
 
         this.$store.dispatch('createAd', ad)
+          .then(() => {
+            this.$router.push('/list')
+          })
+          .catch(() => {})
       }
     }
   }
