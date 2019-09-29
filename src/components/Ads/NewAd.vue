@@ -30,11 +30,14 @@
                 label="Upload image"
                 filled
                 prepend-icon="mdi-camera"
+                accept="image/*"
+                @change="onFileChange"
               ></v-file-input>
 
               <v-row align="center" justify="center">
                 <v-img
-                  src=""
+                  v-if="imageSrc"
+                  :src="imageSrc"
                   aspect-ratio="1"
                   class="grey lighten-2"
                   max-width="250"
@@ -70,7 +73,9 @@ export default {
       title: '',
       description: '',
       promo: false,
-      valid: false
+      valid: false,
+      image: null,
+      imageSrc: ''
     }
   },
   computed: {
@@ -80,13 +85,13 @@ export default {
   },
   methods: {
     createAd () {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.image) {
         // logic
         const ad = {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          imageSrc: 'https://pbs.twimg.com/media/DXPulQwXcAA-CW6.jpg'
+          image: this.image
         }
 
         this.$store.dispatch('createAd', ad)
@@ -95,6 +100,15 @@ export default {
           })
           .catch(() => {})
       }
+    },
+
+    onFileChange (file) {
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imageSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   }
 }

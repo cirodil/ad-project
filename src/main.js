@@ -20,7 +20,7 @@ new Vue({
       authDomain: 'itc-ad-e51c9.firebaseapp.com',
       databaseURL: 'https://itc-ad-e51c9.firebaseio.com',
       projectId: 'itc-ad-e51c9',
-      storageBucket: '',
+      storageBucket: 'itc-ad-e51c9.appspot.com',
       messagingSenderId: '45494270279',
       appId: '1:45494270279:web:48f224825940e188'
     })
